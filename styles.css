@@ -39,7 +39,6 @@ body{
     flex-direction: column;
     align-items: flex-end;
     height:70px;
-   
     padding: 12px;
 }
 .part1{
@@ -67,12 +66,16 @@ body{
 
 .clear-btn{
     background-color: rgb(255, 119, 119);
+    width: 100%;
 
 }
 .submit-btn{
     background-color: rgb(112, 198, 255);
+    width: 100%;
+
 }
 .button>button:last-child{
     margin-top: 2px;
 grid-column: span 5;
+background-color: lightgreen;
 }
