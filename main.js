@@ -4,16 +4,19 @@ class Calculator {
     this.curscreen = curscreen;
     this.clear();
   }
+
   delete() {
     this.curscreenn = this.curscreenn.toString().slice(0, -1);
   }
+
   clear() {
-    this.curscreenn = "";
-    this.prescreenn = "";
+    this.curscreenn = '';
+    this.prescreenn = '';
     this.operator = undefined;
   }
+
   appendNumber(number) {
-    if (number === "." && this.curscreenn.includes(".")) return;
+    if (number === '.' && this.curscreenn.includes('.')) return;
     this.curscreenn = this.curscreenn.toString() + number.toString();
   }
 
@@ -22,34 +25,37 @@ class Calculator {
     if (this.operation != null) {
       this.prescreen.innerText = `${this.prescreenn}  ${this.operation}`;
     } else {
-      this.prescreen.innerText = "";
+      this.prescreen.innerText = '';
     }
   }
+
   chooseoperate(operation) {
-    if (this.curscreenn === "") return;
-    if (this.prescreenn !== "") {
+    if (this.curscreenn === '') return;
+    if (this.prescreenn !== '') {
       this.compute();
     }
     this.operation = operation;
     this.prescreenn = this.curscreenn;
-    this.curscreenn = "";
+    this.curscreenn = '';
   }
+
   compute() {
     let computation;
     const prev = parseFloat(this.prescreenn);
     const current = parseFloat(this.curscreenn);
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(prev) || isNaN(current)) return;
     switch (this.operation) {
-      case "+":
+      case '+':
         computation = prev + current;
         break;
-      case "-":
+      case '-':
         computation = prev - current;
         break;
-      case "*":
+      case '*':
         computation = prev * current;
         break;
-      case "/":
+      case '/':
         computation = prev / current;
         break;
       default:
@@ -57,43 +63,43 @@ class Calculator {
     }
     this.curscreenn = computation;
     this.operation = undefined;
-    this.prescreenn = "";
+    this.prescreenn = '';
   }
 }
 
-const numberButton = document.querySelectorAll("[data-number]");
+const numberButton = document.querySelectorAll('[data-number]');
 
-const operatorButton = document.querySelectorAll("[data-operator]");
-const clearButton = document.querySelector(".clear-btn");
-const submitButton = document.querySelector(".submit-btn");
-const dotButton = document.querySelector(".dot-btn");
-const equalButton = document.getElementById("equal-btn");
-const prescreen = document.querySelector(".prescreen");
-const curscreen = document.querySelector(".curscreen");
+const operatorButton = document.querySelectorAll('[data-operator]');
+const clearButton = document.querySelector('.clear-btn');
+const submitButton = document.querySelector('.submit-btn');
+
+const equalButton = document.getElementById('equal-btn');
+const prescreen = document.querySelector('.prescreen');
+const curscreen = document.querySelector('.curscreen');
 
 const calculator = new Calculator(prescreen, curscreen);
 
 numberButton.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     calculator.appendNumber(button.innerText);
     calculator.updateDispaly();
   });
 });
 operatorButton.forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener('click', () => {
     calculator.chooseoperate(button.innerText);
     calculator.updateDispaly();
   });
 });
-equalButton.addEventListener("click", (button) => {
+equalButton.addEventListener('click', () => {
   calculator.compute();
   calculator.updateDispaly();
 });
-clearButton.addEventListener("click", (button) => {
+clearButton.addEventListener('click', () => {
   calculator.clear();
   calculator.updateDispaly();
 });
-submitButton.addEventListener("click", (button) => {
+submitButton.addEventListener('click', () => {
   calculator.delete();
   calculator.updateDispaly();
 });
